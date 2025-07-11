@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 
 
-# Vistas que ya tenías
+
+
 def principal(request):
     return render(request, "inicio/principal.html")
 
