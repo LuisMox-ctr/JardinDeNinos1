@@ -1,0 +1,33 @@
+{% extends "inicio/encabezado.html" %}
+
+{% block tilulo %}Reconocimiento{% endblock %}
+{% block tilulo1 %}Reconocimiento{% endblock %}
+{% block tilulo2 %}Logros{% endblock %}
+
+{% block contenido %}
+<div class="page-content">
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Logros
+                <small>Reconocimientos</small>
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Aquí puedes hacer un loop si los datos vienen de una lista -->
+        <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Tarea: Nombre de la tarea</h5>
+                    <p class="card-text"><strong>Asigna:</strong> Nombre del asignador</p>
+                    <p class="card-text"><strong>Estado:</strong> En progreso / Completado</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Repite esto por cada elemento -->
+    </div>
+</div>
+{% endblock %}
+
