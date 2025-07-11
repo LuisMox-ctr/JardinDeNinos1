@@ -7,3 +7,6 @@ def principal(request):
 
 def tareas(request):
     return render(request,"inicio/tareas.html")
+
+def dudas(request):
+    return render(request,"inicio/dudas.html")

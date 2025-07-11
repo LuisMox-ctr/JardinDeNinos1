@@ -21,5 +21,6 @@ from inicio import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.principal, name="principal"),
-    path('tareas/',views.tareas, name="tareas")
+    path('tareas/',views.tareas, name="tareas"),
+    path('dudas/',views.dudas, name="dudas"),
 ]
