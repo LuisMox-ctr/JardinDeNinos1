@@ -1,23 +1,32 @@
-{%extends "inicio/encabezado.html" %}
+{% extends "inicio/encabezado.html" %}
 
 {% block contenido %}
-<div>
-    <h1>Dudas</h1>
-    <div>
-        <p>Asunto: <input type="text" name="asunto"></p>
-        <p>Describa su duda:</p><p><textarea cols="50" rows="10"></textarea></p>
-    </div>
-    <p><input type="button" name="enviar" value="Enviar"></p>
-    <br>
-    <div>
-        <hr>
-        <h2>Dudas Enviadas</h2>
-        <div>
-            <!--se podria usar un foreach para los asuntos-->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="text-center text-primary mb-4">Dudas</h1>
+            <div class="card p-4 mb-4">
+                <div class="mb-3">
+                    <label for="asunto" class="form-label">Asunto:</label>
+                    <input type="text" name="asunto" class="form-control" id="asunto">
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Describa su duda:</label>
+                    <textarea name="descripcion" class="form-control" id="descripcion" rows="5"></textarea>
+                </div>
+                <button type="button" class="btn btn-success">Enviar</button>
+            </div>
+
+            <hr class="my-5">
             
-            <h3>asunto:</h3>
-            <p>descripcion de la tarea:</p>
-            <p><input type="button" name="Detalles" value="Detalles/respuesta"></p>
+            <h2 class="text-center text-secondary mb-4">Dudas Enviadas</h2>
+            <div class="card p-3 mb-3">
+                <div class="card-body">
+                    <h3 class="card-title">Asunto:</h3>
+                    <p class="card-text">Descripción de la tarea:</p>
+                    <button type="button" class="btn btn-info">Detalles/respuesta</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
