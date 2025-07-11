@@ -4,6 +4,7 @@ from .models import Reconocimiento
 
 @admin.register(Reconocimiento)
 class ReconocimientoAdmin(admin.ModelAdmin):
+    
     list_display = ('titulo', 'usuario', 'fecha_otorgado')
-    list_filter = ('fecha_otorgado', 'usuario')
-    search_fields = ('titulo', 'descripcion', 'usuario__username')
+    list_filter = ('usuario', 'fecha_otorgado')
+    search_fields = ('titulo', 'descripcion')
