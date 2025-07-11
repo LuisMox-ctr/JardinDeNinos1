@@ -13,3 +13,4 @@ def dudas(request):
 
 def reconocimientos(request):
     return render(request,"inicio/reconocimientos.html")
+#si
