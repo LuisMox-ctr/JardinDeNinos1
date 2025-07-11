@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encabezado</title>
+</head>
+<body>
+    <!--Menu-->
+<ul class="navigation">
+    <li><a href="{%url 'principal'%}">Home</a></li>
+    <li><a href="{%url 'dudas'%}">dudas</a></li>
+    <li><a href="{%url 'tareas'%}">tareas</a></li>
+    <li><a href="{%url 'reconocimientos'%}">reconocimientos</a></li>
+</ul>
+    <!--Contenido-->
+    {% block contenido %}
+
+    {% endblock %}
+    
+</body>
+</html>
