@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 def principal(request):
     return render(request,"inicio/principal.html")
-
+#ff
 def tareas(request):
     return render(request,"inicio/tareas.html")
 

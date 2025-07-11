@@ -1,16 +1,27 @@
-{%extends "inicio/encabezado.html" %}
+{% extends "inicio/encabezado.html" %}
+
+{% block tilulo %}Tareas{% endblock %}
+{% block tilulo1 %}Tareas{% endblock %}
+{% block tilulo2 %}General{% endblock %}
 
 {% block contenido %}
-<div>
-    <h1>Tareas</h1> 
-    <div>
- <!--barra de busqueda-->
-
+<div class="page-content">
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Tareas
+                <small>General</small>
+            </h3>
+        </div>
     </div>
 
-    <div>
-<!--cards de tareas-->
-
-    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Tareas</th>
+                <th>Asigna</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+    </table>
 </div>
 {% endblock %}
