@@ -12,3 +12,4 @@ def tareas(request):
 def dudas(request):
     return render(request, "inicio/dudas.html")
 
+#prueba
