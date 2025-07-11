@@ -1,14 +1,14 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 
-# Create your views here.
-
+# Vistas que ya tenías
 def principal(request):
-    return render(request,"inicio/principal.html")
-#ff
+    return render(request, "inicio/principal.html")
+
 def tareas(request):
-    return render(request,"inicio/tareas.html")
+    return render(request, "inicio/tareas.html")
 
 def dudas(request):
-    return render(request,"inicio/dudas.html")
+    return render(request, "inicio/dudas.html")
 
