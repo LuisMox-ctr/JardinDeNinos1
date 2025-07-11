@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Reconocimiento
+
 
 # Create your views here.
 
