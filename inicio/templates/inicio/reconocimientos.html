@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reconocimientos</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 min-h-screen flex flex-col lg:flex-row">
+{% extends "inicio/encabezado.html" %}
+
+{% block contenido %}
     <main class="flex-1 p-4 lg:p-8 overflow-y-auto">
         <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8">
             <h1 class="text-3xl font-bold text-gray-800 mb-4 sm:mb-0">Mis Reconocimientos</h1>
@@ -37,5 +25,4 @@
             {% endfor %}
         </section>
     </main>
-</body>
-</html>
+{% endblock %}
