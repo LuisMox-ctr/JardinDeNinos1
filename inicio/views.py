@@ -10,3 +10,6 @@ def tareas(request):
 
 def dudas(request):
     return render(request,"inicio/dudas.html")
+
+def reconocimientos(request):
+    return render(request,"inicio/reconocimientos.html")
