@@ -51,8 +51,13 @@
 
 </head>
 <body>
-    <!--Menu-->
     <div class="sidebar">
+        <div class="logo-container">
+            <a href="{% url 'principal' %}">
+                <img src="{% static 'inicio/ %}" alt="Logo del Sitio" class="logo">
+                <span class="site-name">Mi Sitio Web</span>
+            </a>
+        </div>
         <div class="sidebar-content">
             <ul class="navigation">
                 <li><a href="{%url 'principal'%}">Home</a></li>
@@ -62,7 +67,6 @@
             </ul>
         </div>
     </div>
-    <!--Contenido-->
     {% block contenido %}
 
     {% endblock %}
