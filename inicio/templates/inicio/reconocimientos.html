@@ -1,4 +1,3 @@
-<!--Luis Humberto Gonzalez Villela-->>
 {% extends "inicio/encabezado.html" %}
 
 {% block tilulo %}Reconocimiento{% endblock %}
@@ -6,29 +5,55 @@
 {% block tilulo2 %}Logros{% endblock %}
 
 {% block contenido %}
+
+
 <div class="page-content">
-    <div class="page-header">
+     <div class="page-header">
         <div class="page-title">
             <h3>Logros
-                <small>Reconocimientos</small>
+                <h4>aquí puedes ver un reconocimientos que <br>
+        sus hijos tuvieron por haber cumplido <br>
+        excepcionalmente</h4>
             </h3>
         </div>
     </div>
 
-    <div class="row">
-        <!-- Aquí puedes hacer un loop si los datos vienen de una lista -->
-        <div class="col-md-4">
-            <div class="card mb-3 shadow-sm">
+    <div class="row justify-content-center">
+        <!-- Card 1 -->
+        <div class="col-md-3 m-3">
+            <div class="card shadow-sm">
+                <img src="/inicio/static/imagenes/encabezado.jpg" class="card-img-top" alt="logro asistencia">
                 <div class="card-body">
-                    <h5 class="card-title">Reconocimiento </h5>
-                    <p class="card-text"><strong>Asigna:</strong> Nombre del asignador</p>
-                    <p class="card-text"><strong>Estado:</strong> En progreso / Completado</p>
+                    <h6 class="card-title text-muted mb-1">logro asistencia</h6>
+                    <p class="mb-0"><strong>motivo</strong></p>
+                    <p class="text-muted">tuvo el 100% de asistencia Animoooooo</p>
                 </div>
             </div>
         </div>
 
-        <!-- Repite esto por cada elemento -->
-    </div>
-</div>       
-{% endblock %}
+        <!-- Card 2 -->
+        <div class="col-md-3 m-3">
+            <div class="card shadow-sm">
+                <img src="inicio/static/imagenes/encabezado.jpg" class="card-img-top" alt="logro tarea">
+                <div class="card-body">
+                    <h6 class="card-title text-muted mb-1">logro tarea</h6>
+                    <p class="mb-0"><strong>motivo</strong></p>
+                    <p class="text-muted">realizó todas sus tareas al 100non</p>
+                </div>
+            </div>
+        </div>
 
+        <!-- Card 3 -->
+        <div class="col-md-3 m-3">
+            <div class="card shadow-sm">
+                <img src="inicio/static/imagen3.jpg" class="card-img-top" alt="logro respeto">
+                <div class="card-body">
+                    <h6 class="card-title text-muted mb-1">logro respeto</h6>
+                    <p class="mb-0"><strong>motivo</strong></p>
+                    <p class="text-muted">ha completado todos los trabajos en equipo jajjajajaj</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
