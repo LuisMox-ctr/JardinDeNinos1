@@ -16,7 +16,6 @@ def dudas(request):
 def reconocimientos(request):
     return render(request, "inicio/reconocimientos.html")
 
-def recientes(request):
-    return render(request, "inicio/recientes.html")
+
 
 #prueba
