@@ -17,13 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from inicio import views
+from registros import views as registros_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.principal, name="principal"),
+   # path('',views.principal, name="principal"),
     path('tareas/',views.tareas, name="tareas"),
     path('dudas/',views.dudas, name="dudas"),
     path('reconocimientos/',views.reconocimientos, name="reconocimientos"),
-   
-    
+    path('', registros_views.registros, name="principal"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
