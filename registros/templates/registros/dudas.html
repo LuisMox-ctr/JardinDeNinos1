@@ -1,24 +1,5 @@
-<!--Diego Daniel Yañéz Zaacarias-->>
+<!--Diego Daniel Yañéz Zaacarias-->
 {% extends "inicio/encabezado.html" %}
-
-{% block contenido %}
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <h1 class="text-center text-primary mb-4">Dudas</h1>
-            <div class="card p-4 mb-4">
-                <div class="mb-3">
-                    <label for="asunto" class="form-label">Asunto:</label>
-                    <input type="text" name="asunto" class="form-control" id="asunto">
-                </div>
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Describa su duda:</label>
-                    <textarea name="descripcion" class="form-control" id="descripcion" rows="5"></textarea>
-                </div>
-                <button type="button" class="btn btn-success">Enviar</button>
-            </div>
-
-            <hr class="my-5">{% extends "inicio/encabezado.html" %}
 
 {% block contenido %}
 <div class="container my-5">
@@ -68,22 +49,6 @@
             {% empty %}
                 <p class="text-center">Aún no hay dudas registradas.</p>
             {% endfor %}
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-<!--Brandon vargas correa-->
-            <h2 class="text-center text-secondary mb-4">Dudas Enviadas</h2>
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Asunto: Entregar planeación</h3>
-                </div>
-                <div class="panel-body">
-                    <p>Descripción de la tarea: Subir la planeación del lunes.</p>
-                    <button class="btn btn-success">Detalles/respuesta</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

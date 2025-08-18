@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Alumnos
-from .models import Alumnos, Tareas, Maestros, AlumnoTarea
+from .models import Alumnos, Tareas, Maestros, AlumnoTarea, Duda
 # Register your models here.
 #<Luis alejandro Zacarias gonzalez
 class AdministrarModelo(admin.ModelAdmin):
@@ -27,3 +27,12 @@ class AdministrarAlumnoTarea(admin.ModelAdmin):
     readonly_fields = ('fecha_asignada',)
 
 admin.site.register(AlumnoTarea, AdministrarAlumnoTarea)
+
+
+class AdministrarDudas(admin.ModelAdmin):
+    list_display = ("asunto", "created")
+    search_fields = ("asunto", "descripcion")
+    date_hierarchy = "created"
+    readonly_fields = ('created',)
+    
+admin.site.register(Duda, AdministrarDudas)

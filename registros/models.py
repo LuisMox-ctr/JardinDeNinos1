@@ -68,3 +68,12 @@ class AlumnoTarea(models.Model):
     def __str__(self):
         return f"{self.alumno.nombre} - {self.tarea.nombre} ({self.estado})"
    
+   
+class Duda(models.Model):
+     asunto = models.CharField(max_length=200)
+     descripcion = models.TextField()
+     respuesta = models.TextField(blank=True, null=True)  # el maestro/admin puede responder
+     created = models.DateTimeField(auto_now_add=True)
+
+     def __str__(self):
+        return self.asunto

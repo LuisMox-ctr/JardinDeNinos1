@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('principal/',views.principal, name="principal"),
     path('tareas/',views.tareas, name="tareas1"),
-    path('dudas/',views.dudas, name="dudas"),
+    path('dudas/',registros_views.dudas, name="dudas"),
     path('reconocimientos/',views.reconocimientos, name="reconocimientos"),
     path('', registros_views.registros, name="tareas"),
     path("entregar/<int:tarea_id>/", registros_views.entregar_tarea, name="entregar_tarea"),

@@ -6,6 +6,9 @@ from django.contrib import messages
 from .forms import EntregarTareaForm
 from django.db.models import Q
 
+from .models import Duda
+from .forms import DudaForm
+
 # Create your views here.
 def registros(request):
     # Si llega un filtro por GET, lo usamos
@@ -85,3 +88,20 @@ def entregar_tarea(request, tarea_id):
         form = EntregarTareaForm(instance=asignacion)
 
     return render(request, "registros/entregar_tarea.html", {"form": form, "asignacion": asignacion})
+
+
+def dudas(request):
+    if request.method == "POST":
+        form = DudaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dudas')  # redirige para limpiar el form
+    else:
+        form = DudaForm()
+
+    dudas_list = Duda.objects.order_by('-created')
+
+    return render(request, "registros/dudas.html", {
+        'form': form,
+        'dudas': dudas_list,
+    })
