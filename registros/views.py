@@ -23,21 +23,17 @@ def registros(request):
     # Filtro por estado
     if filtro_estado in ("pendiente","terminada"):
         asignaciones = asignaciones.filter(estado=filtro_estado)
-        # Filtro por alumno (id exacto)
+    
+    # Filtro por alumno (id exacto)
     if alumno_id:
         asignaciones = asignaciones.filter(alumno_id=alumno_id)
-         # Búsqueda libre (nombre o ident)
+    
+    # Búsqueda libre (nombre o ident)
     if q:
         asignaciones = asignaciones.filter(
             Q(alumno__nombre__icontains=q) | 
             Q(tarea__nombre__icontains=q)
         )
-    '''if filtro_estado == "pendiente":
-        asignaciones = AlumnoTarea.objects.filter(estado="pendiente")
-    elif filtro_estado == "terminada":
-        asignaciones = AlumnoTarea.objects.filter(estado="terminada")
-    else:
-        asignaciones = AlumnoTarea.objects.all()'''
 
     alumnos_con_tareas = {}
     for asig in asignaciones.order_by('alumno__nombre'):
@@ -48,29 +44,18 @@ def registros(request):
                 'tareas': []
             }
         alumnos_con_tareas[aid]['tareas'].append(asig)
-        
-        alumnos_list= Alumnos.objects.all().order_by('nombre')
-        return render(request, "registros/principal.html", {
+    
+    # Mover estas líneas fuera del bucle for
+    alumnos_list = Alumnos.objects.all().order_by('nombre')
+    
+    return render(request, "registros/principal.html", {
         "alumnos_con_tareas": alumnos_con_tareas,
         "filtro_estado": filtro_estado,
         "alumnos_list": alumnos_list,
         "alumno_seleccionado": alumno_id,
         "q": q,
     })
-    '''alumnos_con_tareas = {}
-    for asignacion in asignaciones:
-        alumno_id = asignacion.alumno.id
-        if alumno_id not in alumnos_con_tareas:
-            alumnos_con_tareas[alumno_id] = {
-                'alumno': asignacion.alumno,
-                'tareas': []
-            }
-        alumnos_con_tareas[alumno_id]['tareas'].append(asignacion)
-    
-    return render(request, "registros/principal.html", {
-        "alumnos_con_tareas": alumnos_con_tareas,
-        "filtro_estado": filtro_estado
-    })'''
+
 
 def entregar_tarea(request, tarea_id):
     asignacion = get_object_or_404(AlumnoTarea, id=tarea_id)
