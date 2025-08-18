@@ -1,29 +1,30 @@
-{%extends "inicio/encabezado.html" %}
+{% extends "inicio/encabezado.html" %}
 
-{% block titulo %} Principal {%endblock%}
-{%load static%}
+{% block titulo %} Principal {% endblock %}
+{% load static %}
 
 {% block contenido %}
-<div class="page-content">
+<div class="page-content text-center">
     <h1>Bienvenidos padres de familia les damos la bienvenida</h1>
     <div>
-        <img src="#" alt="" >
+        <img src="#" alt="Imagen de bienvenida" class="img-fluid my-3">
     </div>
-    <div>
-        <table class = "table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Nombre</th>
-                </tr>
-            </thead>
-        <tbody>
-            <tr>
-                <td class="text-center"><img src="" alt="" class="img-media"></td>
-                <td class="muted">Nombre del Niño</td>
-            </tr>
-        </tbody>
-    </table>
+
+    <div class="container">
+  <div class="row text-center">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+      <img src="{% static 'imagenes/Dudas.jpg' %}" alt="Logo del Sitio" class="logo" width="300" height="300">
+      <a href="{% url 'dudas' %}" class="btn btn-primary btn-block">Dudas</a>
     </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+      <img src="{% static 'imagenes/tareas.png' %}" alt="Logo del Sitio" class="logo" width="300" height="300">
+      <a href="{% url 'tareas' %}" class="btn btn-success btn-block">Tareas</a>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6">
+      <img src="{% static 'imagenes/reconocimientos.jpg' %}" alt="Logo del Sitio" class="logo" width="350" height="250">
+      <a href="{% url 'reconocimientos' %}" class="btn btn-warning btn-block">Reconocimientos</a>
+    </div>
+  </div>
 </div>
+
 {% endblock %}
