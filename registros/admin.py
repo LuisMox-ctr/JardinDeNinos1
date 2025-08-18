@@ -48,3 +48,7 @@ class ProfesorAdmin(admin.ModelAdmin):
     list_display = ("nombre",)
     
 admin.site.register(Maestros, ProfesorAdmin)
+
+admin.site.site_header = "Panel de Administración - Gestión de Jardin de niños"
+admin.site.site_title = "Admin Escolar"
+admin.site.index_title = "Gestión de Jardin de niños"
