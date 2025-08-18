@@ -35,7 +35,7 @@
 
   <div>
     <label for="q" class="form-label">Buscar (nombre/ID)</label>
-    <input type="text" name="q" id="q" class="form-control" value="{{ q }}" placeholder="Ej. Juan o 12345">
+    <input type="text" name="q" id="q" class="form-control" value="{{ q }}" placeholder="Buscar por nombre">
   </div>
 
   <div>
@@ -79,16 +79,23 @@
                                 <small class="text-muted">{{ asignacion.tarea.descripcion }}</small>
                             </td>
                             <td class="text-center">
-                                {% if asignacion.estado == "pendiente" %}
-                                    <a href="{% url 'entregar_tarea' asignacion.id %}" class="btn btn-sm btn-primary">Entregar</a>
-                                {% else %}
-                                    <span class="badge badge-success">Terminada</span><br>
-                                    {% if asignacion.evidencia %}
-                                        <a href="{{ asignacion.evidencia.url }}" target="_blank" class="btn btn-sm btn-info mt-1">Ver evidencia</a>
-                                        <a href="{% url 'entregar_tarea' asignacion.id %}" class="btn btn-sm btn-warning mt-1">Reemplazar</a>
-                                    {% endif %}
+                            {% if asignacion.estado == "pendiente" %}
+                                <!-- Caso: tarea pendiente -->
+                                <a href="{% url 'entregar_tarea' asignacion.id %}" class="btn btn-sm btn-primary">Entregar</a>
+                            {% else %}
+                                <!-- Caso: tarea terminada -->
+                                <span class="badge badge-success">Terminada</span><br>
+
+                                {% if asignacion.evidencia %}
+                                    <!-- Si hay evidencia, mostramos descargar -->
+                                    <a href="{{ asignacion.evidencia.url }}" target="_blank" class="btn btn-sm btn-info mt-1">Descargar evidencia</a>
                                 {% endif %}
-                            </td>
+
+                                <!-- Botón de ver/editar, siempre disponible -->
+                                 <br>
+                                <a href="{% url 'entregar_tarea' asignacion.id %}" class="btn btn-sm btn-warning mt-1">Ver / Editar</a>
+                            {% endif %}
+                        </td>
                         {% if not forloop.first %}</tr>{% endif %}
                     {% endfor %}
                 </tr>
