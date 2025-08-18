@@ -56,6 +56,8 @@ class AlumnoTarea(models.Model):
     estado = models.CharField(max_length=10, choices=ESTADOS, default='pendiente', verbose_name="Estado")
     fecha_asignada = models.DateTimeField(auto_now_add=True, verbose_name="Fecha Asignada")
     fecha_terminada = models.DateTimeField(null=True, blank=True, verbose_name="Fecha Terminada")
+    evidencia = models.FileField(upload_to='evidencias/', null=True, blank=True, verbose_name="Evidencia")
+
     
     class Meta:
         verbose_name = "Asignación de Tarea"

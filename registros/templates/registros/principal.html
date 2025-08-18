@@ -5,10 +5,22 @@
 
 {% block contenido %}
 <div class="page-content">
-    <h1>Bienvenidos padres de familia - Tareas Pendientes</h1>
+    <h1>Bienvenidos padres de familia - Tareas</h1>
     <div>
         <img src="#" alt="">
     </div>
+
+    <!-- Filtro -->
+    <form method="get" class="mb-3">
+      <label for="estado">Filtrar por estado:</label>
+      <select name="estado" id="estado" class="form-control d-inline w-auto" onchange="this.form.submit()">
+        <option value="todas" {% if filtro_estado == "todas" %}selected{% endif %}>Todas</option>
+        <option value="pendiente" {% if filtro_estado == "pendiente" %}selected{% endif %}>Pendientes</option>
+        <option value="terminada" {% if filtro_estado == "terminada" %}selected{% endif %}>Terminadas</option>
+      </select>
+    </form>
+
+    <!-- Tabla -->
     <div>
         <table class="table table-bordered table-striped">
             <thead>
@@ -16,14 +28,15 @@
                     <th>Foto</th>
                     <th>Identificación</th>
                     <th>Nombre del Alumno</th>
-                    <th>Tareas Pendientes</th>
-                    <th>Estado</th>
+                    <th>Tarea</th>
+                    <th>Acciones / Estado</th>
                 </tr>
             </thead>
             <tbody>
                 {% for alumno_id, data in alumnos_con_tareas.items %}
-                {% with alumno=data.alumno tareas=data.tareas_pendientes %}
+                {% with alumno=data.alumno tareas=data.tareas %}
                 <tr>
+                    <!-- Info del alumno -->
                     <td class="text-center" rowspan="{{ tareas|length }}">
                         {% if alumno.foto %}
                             <img src="{{ alumno.foto.url }}" alt="{{ alumno.nombre }}" class="img-media" style="width: 50px; height: 50px; border-radius: 50%;">
@@ -33,27 +46,32 @@
                     </td>
                     <td class="text-center" rowspan="{{ tareas|length }}">{{ alumno.ident }}</td>
                     <td class="muted" rowspan="{{ tareas|length }}">{{ alumno.nombre }}</td>
-                    
+
+                    <!-- Info de tareas -->
                     {% for asignacion in tareas %}
-                        {% if not forloop.first %}
-                        <tr>
-                        {% endif %}
+                        {% if not forloop.first %}<tr>{% endif %}
                             <td>
                                 <strong>{{ asignacion.tarea.nombre }}</strong><br>
                                 <small class="text-muted">{{ asignacion.tarea.descripcion }}</small>
                             </td>
                             <td class="text-center">
-                                <span class="badge badge-warning">{{ asignacion.estado|capfirst }}</span>
+                                {% if asignacion.estado == "pendiente" %}
+                                    <a href="{% url 'entregar_tarea' asignacion.id %}" class="btn btn-sm btn-primary">Entregar</a>
+                                {% else %}
+                                    <span class="badge badge-success">Terminada</span><br>
+                                    {% if asignacion.evidencia %}
+                                        <a href="{{ asignacion.evidencia.url }}" target="_blank" class="btn btn-sm btn-info mt-1">Ver evidencia</a>
+                                        <a href="{% url 'entregar_tarea' asignacion.id %}" class="btn btn-sm btn-warning mt-1">Reemplazar</a>
+                                    {% endif %}
+                                {% endif %}
                             </td>
-                        {% if not forloop.first %}
-                        </tr>
-                        {% endif %}
+                        {% if not forloop.first %}</tr>{% endif %}
                     {% endfor %}
                 </tr>
                 {% endwith %}
                 {% empty %}
                 <tr>
-                    <td colspan="5" class="text-center">No hay tareas pendientes</td>
+                    <td colspan="5" class="text-center">No hay tareas registradas</td>
                 </tr>
                 {% endfor %}
             </tbody>
