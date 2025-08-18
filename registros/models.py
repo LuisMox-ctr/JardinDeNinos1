@@ -43,3 +43,26 @@ class Maestros(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+    
+class AlumnoTarea(models.Model):
+    ESTADOS = [
+        ('pendiente', 'Pendiente'),
+        ('terminada', 'Terminada'),
+    ]
+    
+    alumno = models.ForeignKey(Alumnos, on_delete=models.CASCADE, verbose_name="Alumno")
+    tarea = models.ForeignKey(Tareas, on_delete=models.CASCADE, verbose_name="Tarea")
+    estado = models.CharField(max_length=10, choices=ESTADOS, default='pendiente', verbose_name="Estado")
+    fecha_asignada = models.DateTimeField(auto_now_add=True, verbose_name="Fecha Asignada")
+    fecha_terminada = models.DateTimeField(null=True, blank=True, verbose_name="Fecha Terminada")
+    
+    class Meta:
+        verbose_name = "Asignación de Tarea"
+        verbose_name_plural = "Asignaciones de Tareas"
+        unique_together = ['alumno', 'tarea']  # Un alumno no puede tener la misma tarea dos veces
+        ordering = ["-fecha_asignada"]
+    
+    def __str__(self):
+        return f"{self.alumno.nombre} - {self.tarea.nombre} ({self.estado})"
+   

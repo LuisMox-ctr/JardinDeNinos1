@@ -5,7 +5,7 @@
 
 {% block contenido %}
 <div class="page-content">
-    <h1>Bienvenidos padres de familia les damos la bienvenida</h1>
+    <h1>Bienvenidos padres de familia - Tareas Pendientes</h1>
     <div>
         <img src="#" alt="">
     </div>
@@ -15,37 +15,45 @@
                 <tr>
                     <th>Foto</th>
                     <th>Identificación</th>
-                    <th>Nombre</th>
-                    <th>Tarea Asignada</th>
-                    <th>Descripción de Tarea</th>
+                    <th>Nombre del Alumno</th>
+                    <th>Tareas Pendientes</th>
+                    <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
-                {% for alumno in alumnos %}
+                {% for alumno_id, data in alumnos_con_tareas.items %}
+                {% with alumno=data.alumno tareas=data.tareas_pendientes %}
                 <tr>
-                    <td class="text-center">
+                    <td class="text-center" rowspan="{{ tareas|length }}">
                         {% if alumno.foto %}
                             <img src="{{ alumno.foto.url }}" alt="{{ alumno.nombre }}" class="img-media" style="width: 50px; height: 50px; border-radius: 50%;">
                         {% else %}
                             <span class="text-muted">Sin foto</span>
                         {% endif %}
                     </td>
-                    <td class="text-center">{{ alumno.ident }}</td>
-                    <td class="muted">{{ alumno.nombre }}</td>
-                    <td class="text-center">
-                        {% if alumno.tarea %}
-                            {{ alumno.tarea.nombre }}
-                        {% else %}
-                            <span class="text-muted">Sin tarea asignada</span>
+                    <td class="text-center" rowspan="{{ tareas|length }}">{{ alumno.ident }}</td>
+                    <td class="muted" rowspan="{{ tareas|length }}">{{ alumno.nombre }}</td>
+                    
+                    {% for asignacion in tareas %}
+                        {% if not forloop.first %}
+                        <tr>
                         {% endif %}
-                    </td>
-                    <td>
-                        {% if alumno.tarea %}
-                            {{ alumno.tarea.descripcion }}
-                        {% else %}
-                            <span class="text-muted">-</span>
+                            <td>
+                                <strong>{{ asignacion.tarea.nombre }}</strong><br>
+                                <small class="text-muted">{{ asignacion.tarea.descripcion }}</small>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge badge-warning">{{ asignacion.estado|capfirst }}</span>
+                            </td>
+                        {% if not forloop.first %}
+                        </tr>
                         {% endif %}
-                    </td>
+                    {% endfor %}
+                </tr>
+                {% endwith %}
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No hay tareas pendientes</td>
                 </tr>
                 {% endfor %}
             </tbody>
