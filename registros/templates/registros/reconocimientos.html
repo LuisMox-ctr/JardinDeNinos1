@@ -1,0 +1,47 @@
+{% extends "inicio/encabezado.html" %}
+{% load static %}
+
+{% block tilulo %}Reconocimiento{% endblock %}
+{% block tilulo1 %}Reconocimiento{% endblock %}
+{% block tilulo2 %}Logros{% endblock %}
+
+{% block contenido %}
+<div class="page-content">
+    <div class="page-header">
+        <h3>Logros</h3>
+        <h4>
+            Aquí puedes ver los reconocimientos que <br>
+            sus hijos recibieron por haber cumplido <br>
+            excepcionalmente
+        </h4>
+    </div>
+
+    <div class="row">
+        {% for rec in reconocimientos %}
+            <div class="col-sm-6 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <strong>{{ rec.titulo }}</strong>
+                    </div>
+                    <div class="panel-body text-center">
+                            <img src="{{ rec.imagen.url }}" class="img-responsive center-block" style="max-height:150px;" alt="{{ rec.titulo }}">
+                        <p><strong>Motivo:</strong> {{ rec.motivo }}</p>
+                        <p><strong>Alumno:</strong> {{ rec.alumno.nombre }}</p>
+                        {% if rec.maestro %}
+                            <p><em>Otorgado por: {{ rec.maestro.nombre }}</em></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+                <div class="clearfix visible-md-block visible-lg-block"></div>
+            {% endif %}
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="clearfix visible-sm-block"></div>
+            {% endif %}
+        {% empty %}
+            <p class="text-center">Aún no hay reconocimientos registrados.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -5,55 +5,37 @@
 {% block tilulo2 %}Logros{% endblock %}
 
 {% block contenido %}
-
-
 <div class="page-content">
-     <div class="page-header">
+    <div class="page-header">
         <div class="page-title">
-            <h3>Logros
-                <h4>aquí puedes ver un reconocimientos que <br>
-        sus hijos tuvieron por haber cumplido <br>
-        excepcionalmente</h4>
-            </h3>
+            <h3>Logros</h3>
+            <h4>
+                Aquí puedes ver los reconocimientos que <br>
+                sus hijos recibieron por haber cumplido <br>
+                excepcionalmente
+            </h4>
         </div>
     </div>
 
     <div class="row justify-content-center">
-        <!-- Card 1 -->
+        {% for rec in reconocimientos %}
         <div class="col-md-3 m-3">
             <div class="card shadow-sm">
-                <img src="/inicio/static/imagenes/encabezado.jpg" class="card-img-top" alt="logro asistencia">
+                <img src="{{ rec.imagen.url }}" class="card-img-top" alt="{{ rec.titulo }}">
                 <div class="card-body">
-                    <h6 class="card-title text-muted mb-1">logro asistencia</h6>
-                    <p class="mb-0"><strong>motivo</strong></p>
-                    <p class="text-muted">tuvo el 100% de asistencia Animoooooo</p>
+                    <h6 class="card-title text-muted mb-1">{{ rec.titulo }}</h6>
+                    <p class="mb-0"><strong>Motivo:</strong></p>
+                    <p class="text-muted">{{ rec.motivo }}</p>
+                    <p><strong>Alumno:</strong> {{ rec.alumno.nombre }}</p>
+                    {% if rec.maestro %}
+                        <p class="text-end"><em>Otorgado por: {{ rec.maestro.nombre }}</em></p>
+                    {% endif %}
                 </div>
             </div>
         </div>
-
-        <!-- Card 2 -->
-        <div class="col-md-3 m-3">
-            <div class="card shadow-sm">
-                <img src="inicio/static/imagenes/encabezado.jpg" class="card-img-top" alt="logro tarea">
-                <div class="card-body">
-                    <h6 class="card-title text-muted mb-1">logro tarea</h6>
-                    <p class="mb-0"><strong>motivo</strong></p>
-                    <p class="text-muted">realizó todas sus tareas al 100non</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="col-md-3 m-3">
-            <div class="card shadow-sm">
-                <img src="inicio/static/imagen3.jpg" class="card-img-top" alt="logro respeto">
-                <div class="card-body">
-                    <h6 class="card-title text-muted mb-1">logro respeto</h6>
-                    <p class="mb-0"><strong>motivo</strong></p>
-                    <p class="text-muted">ha completado todos los trabajos en equipo jajjajajaj</p>
-                </div>
-            </div>
-        </div>
+        {% empty %}
+        <p class="text-center">Aún no hay reconocimientos registrados.</p>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

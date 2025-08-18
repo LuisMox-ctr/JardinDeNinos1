@@ -77,3 +77,15 @@ class Duda(models.Model):
 
      def __str__(self):
         return self.asunto
+    
+    
+class Reconocimiento(models.Model):
+    titulo = models.CharField(max_length=100, help_text="Ej: Estrella de asistencia")
+    motivo = models.TextField()
+    imagen = models.ImageField(upload_to="reconocimientos/")  # se guardarán en media/reconocimientos/
+    alumno = models.ForeignKey(Alumnos, on_delete=models.CASCADE, related_name="reconocimientos")
+    maestro = models.ForeignKey(Maestros, on_delete=models.SET_NULL, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.titulo} - {self.alumno.nombre}"

@@ -6,7 +6,7 @@ from django.contrib import messages
 from .forms import EntregarTareaForm
 from django.db.models import Q
 
-from .models import Duda
+from .models import Duda, Reconocimiento
 from .forms import DudaForm
 
 # Create your views here.
@@ -104,4 +104,11 @@ def dudas(request):
     return render(request, "registros/dudas.html", {
         'form': form,
         'dudas': dudas_list,
+    })
+    
+def reconocimientos(request):
+    reconocimientos_list = Reconocimiento.objects.select_related("alumno", "maestro").order_by("-created")
+
+    return render(request, "registros/reconocimientos.html", {
+        "reconocimientos": reconocimientos_list
     })

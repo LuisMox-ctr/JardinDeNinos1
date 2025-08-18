@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Alumnos
-from .models import Alumnos, Tareas, Maestros, AlumnoTarea, Duda
+from .models import Alumnos, Tareas, Maestros, AlumnoTarea, Duda, Reconocimiento
 # Register your models here.
 #<Luis alejandro Zacarias gonzalez
 class AdministrarModelo(admin.ModelAdmin):
@@ -36,3 +36,15 @@ class AdministrarDudas(admin.ModelAdmin):
     readonly_fields = ('created',)
     
 admin.site.register(Duda, AdministrarDudas)
+
+class ReconocimientoAdmin(admin.ModelAdmin):
+    list_display = ("titulo", "alumno", "maestro", "created")
+    list_filter = ("maestro", "alumno")
+    search_fields = ("titulo", "motivo")
+    
+admin.site.register(Reconocimiento, ReconocimientoAdmin)
+
+class ProfesorAdmin(admin.ModelAdmin):
+    list_display = ("nombre",)
+    
+admin.site.register(Maestros, ProfesorAdmin)
