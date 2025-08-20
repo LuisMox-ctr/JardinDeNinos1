@@ -12,7 +12,7 @@ class AdministrarModelo(admin.ModelAdmin):
 admin.site.register(Alumnos, AdministrarModelo)
 
 class AdministrarTareas(admin.ModelAdmin):
-    readonly_fields=('created','updated')
+    readonly_fields=('created','updated',)
     list_display = ("descripcion","created","updated")
     search_fields = ("descripcion","nombre")
     date_hierarchy = "created"
@@ -24,7 +24,7 @@ class AdministrarAlumnoTarea(admin.ModelAdmin):
     list_filter = ("estado", "fecha_asignada")
     search_fields = ("alumno__nombre", "tarea__nombre")
     date_hierarchy = "fecha_asignada"
-    readonly_fields = ('fecha_asignada',)
+    readonly_fields = ('fecha_asignada','evidencia','estado')
 
 admin.site.register(AlumnoTarea, AdministrarAlumnoTarea)
 
@@ -33,8 +33,8 @@ class AdministrarDudas(admin.ModelAdmin):
     list_display = ("asunto", "created")
     search_fields = ("asunto", "descripcion")
     date_hierarchy = "created"
-    readonly_fields = ('created',)
-    
+    readonly_fields = ('created','asunto','descripcion')
+
 admin.site.register(Duda, AdministrarDudas)
 
 class ReconocimientoAdmin(admin.ModelAdmin):
@@ -48,3 +48,7 @@ class ProfesorAdmin(admin.ModelAdmin):
     list_display = ("nombre",)
     
 admin.site.register(Maestros, ProfesorAdmin)
+
+admin.site.site_header = "Panel de Administración - Gestión de Jardin de niños"
+admin.site.site_title = "Admin Escolar"
+admin.site.index_title = "Gestión de Jardin de niños"

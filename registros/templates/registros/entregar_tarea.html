@@ -2,14 +2,99 @@
 {% block titulo %} Entregar Tarea {% endblock %}
 
 {% block contenido %}
-<div class="container mt-4">
-  <h2>Entregar: {{ asignacion.tarea.nombre }}</h2>
+<style>
+  .tarea-card {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fafafaff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 25px;
+  }
+
+  .tarea-card h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .tarea-card p {
+    font-size: 15px;
+    color: #555;
+  }
+
+  .form-label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    color: #444;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: #28a745;
+    outline: none;
+  }
+
+  .btn {
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 600;
+  }
+
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+
+  .btn-success:hover {
+    background-color: #218838;
+  }
+
+  .btn-secondary {
+    background-color: #f00000ff;
+    border: none;
+  }
+
+  .btn-secondary:hover {
+    background-color: #f80000ff;
+  }
+
+  .errorlist {
+    color: #f10e06ff;
+    font-size: 13px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+</style>
+
+<div class="tarea-card">
+  <h2>📘 Entregar: {{ asignacion.tarea.nombre }}</h2>
   <p><strong>Alumno:</strong> {{ asignacion.alumno.nombre }}</p>
   <p>{{ asignacion.tarea.descripcion }}</p>
 
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+
+    {% for field in form %}
+      <div class="mb-3">
+        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+          <div class="errorlist">{{ field.errors }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+
     <button type="submit" class="btn btn-success">Entregar</button>
     <a href="{% url 'tareas' %}" class="btn btn-secondary">Cancelar</a>
   </form>

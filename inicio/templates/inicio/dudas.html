@@ -2,88 +2,89 @@
 {% extends "inicio/encabezado.html" %}
 
 {% block contenido %}
+<style>
+    body {
+        background-color: #f0f8ff; /* Azul cielo muy claro */
+    }
+
+    .container {
+        border-radius: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 2.5rem;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border: 2px solid #ffcc00; /* Borde amarillo vibrante */
+        border-radius: 20px;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        border-color: #6a1b9a; /* Un morado amigable */
+    }
+
+    .btn-success {
+        background-color: #38b438; /* Verde manzana */
+        border: none;
+        border-radius: 20px;
+        font-weight: bold;
+    }
+
+    .card-header {
+        background-color: #ffb6c1; /* Rosa claro */
+        border-bottom: 2px solid #ff6347; /* Naranja rojizo para contraste */
+        border-radius: 18px 18px 0 0;
+    }
+
+    .badge-warning {
+        background-color: #ffd700 !important; /* Dorado */
+        color: #000 !important;
+    }
+</style>
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <h1 class="text-center text-primary mb-4">Dudas</h1>
-            <div class="card p-4 mb-4">
-                <div class="mb-3">
-                    <label for="asunto" class="form-label">Asunto:</label>
-                    <input type="text" name="asunto" class="form-control" id="asunto">
-                </div>
-                <div class="mb-3">
-                    <label for="descripcion" class="form-label">Describa su duda:</label>
-                    <textarea name="descripcion" class="form-control" id="descripcion" rows="5"></textarea>
-                </div>
-                <button type="button" class="btn btn-success">Enviar</button>
-            </div>
-
-            <hr class="my-5">{% extends "inicio/encabezado.html" %}
-
-{% block contenido %}
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <h1 class="text-center text-primary mb-4">Dudas</h1>
+            <h1 class="text-center mb-4" style="color: #6a1b9a; font-family: 'Bubblegum Sans', cursive;">¿Tienes alguna duda? 🤔</h1>
             
-            <!-- Formulario -->
             <div class="card p-4 mb-4">
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <div class="mb-3">
+                        <label for="id_asunto" class="form-label">Asunto:</label>
+                        <input type="text" name="asunto" class="form-control" id="id_asunto" placeholder="Ej: Pago de colegiatura">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_descripcion" class="form-label">Describa su duda:</label>
+                        <textarea name="descripcion" class="form-control" id="id_descripcion" rows="5" placeholder="Ej: ¿Cuál es el proceso de inscripción para el próximo ciclo escolar?"></textarea>
+                    </div>
                     <button type="submit" class="btn btn-success">Enviar</button>
                 </form>
             </div>
 
             <hr class="my-5">
 
-            <!-- Listado -->
-            <h2 class="text-center text-secondary mb-4">Dudas Enviadas</h2>
+            <h2 class="text-center mb-4" style="color: #6a1b9a; font-family: 'Bubblegum Sans', cursive;">Dudas Enviadas 📬</h2>
             {% for duda in dudas %}
                 <div class="card mb-3">
                     <div class="card-header">
-                        <strong>Asunto:</strong> {{ duda.asunto }}
+                        <h5 class="my-0"><strong>Asunto:</strong> {{ duda.asunto }}</h5>
                     </div>
                     <div class="card-body">
                         <p><strong>Descripción:</strong> {{ duda.descripcion }}</p>
                         {% if duda.respuesta %}
-                            <div class="alert alert-success">
-                                <strong>Respuesta:</strong> {{ duda.respuesta }}
+                            <div class="alert alert-success mt-2">
+                                <strong>Respuestas:</strong> {{ duda.respuesta }}
                             </div>
                         {% else %}
-                            <span class="badge bg-warning text-dark">En espera de respuesta</span>
+                            <span class="badge bg-warning text-dark">Pendiente de respuesta</span>
                         {% endif %}
-                        <button class="btn btn-info mt-2" data-bs-toggle="collapse" data-bs-target="#detalles{{ duda.id }}">
-                            Detalles
-                        </button>
-                        <div id="detalles{{ duda.id }}" class="collapse mt-2">
-                            <p><strong>Asunto:</strong> {{ duda.asunto }}</p>
-                            <p><strong>Descripción:</strong> {{ duda.descripcion }}</p>
-                            {% if duda.respuesta %}
-                                <p><strong>Respuesta:</strong> {{ duda.respuesta }}</p>
-                            {% endif %}
-                        </div>
                     </div>
                 </div>
             {% empty %}
-                <p class="text-center">Aún no hay dudas registradas.</p>
+                <p class="text-center">¡Genial! No tienes dudas pendientes. 🌈</p>
             {% endfor %}
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-<!--Brandon vargas correa-->
-            <h2 class="text-center text-secondary mb-4">Dudas Enviadas</h2>
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Asunto: Entregar planeación</h3>
-                </div>
-                <div class="panel-body">
-                    <p>Descripción de la tarea: Subir la planeación del lunes.</p>
-                    <button class="btn btn-success">Detalles/respuesta</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>

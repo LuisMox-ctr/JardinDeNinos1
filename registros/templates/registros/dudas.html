@@ -1,4 +1,4 @@
-<!--Diego Daniel Yañéz Zaacarias-->
+<!--Diego Daniel Yañez Zaacarias-->
 {% extends "inicio/encabezado.html" %}
 
 {% block contenido %}
@@ -18,37 +18,44 @@
 
             <hr class="my-5">
 
-            <!-- Listado -->
+            <!-- Listado con Grid -->
             <h2 class="text-center text-secondary mb-4">Dudas Enviadas</h2>
-            {% for duda in dudas %}
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <strong>Asunto:</strong> {{ duda.asunto }}
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Descripción:</strong> {{ duda.descripcion }}</p>
-                        {% if duda.respuesta %}
-                            <div class="alert alert-success">
-                                <strong>Respuesta:</strong> {{ duda.respuesta }}
+            
+            <div class="row">
+                {% for duda in dudas %}
+                    <div class="col-sm-6 col-md-4 mb-3">
+                        <div class="card" style="border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <div class="card-header">
+                                <strong>{{ duda.asunto }}</strong>
+                                <br><small class="text-muted">{{ duda.created|date:"d/m/Y H:i" }}</small>
                             </div>
-                        {% else %}
-                            <span class="badge bg-warning text-dark">En espera de respuesta</span>
-                        {% endif %}
-                        <button class="btn btn-info mt-2" data-bs-toggle="collapse" data-bs-target="#detalles{{ duda.id }}">
-                            Detalles
-                        </button>
-                        <div id="detalles{{ duda.id }}" class="collapse mt-2">
-                            <p><strong>Asunto:</strong> {{ duda.asunto }}</p>
-                            <p><strong>Descripción:</strong> {{ duda.descripcion }}</p>
-                            {% if duda.respuesta %}
-                                <p><strong>Respuesta:</strong> {{ duda.respuesta }}</p>
-                            {% endif %}
+                            <div class="card-body">
+                                <p><strong>Descripción:</strong> {{ duda.descripcion }}</p>
+                                
+                                {% if duda.respuesta %}
+                                    <div class="alert alert-success">
+                                        <strong>Respuesta:</strong> {{ duda.respuesta }}
+                                    </div>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">En espera de respuesta</span>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% empty %}
-                <p class="text-center">Aún no hay dudas registradas.</p>
-            {% endfor %}
+
+                    <!-- Clearfix para Bootstrap 3 -->
+                    {% if forloop.counter|divisibleby:3 %}
+                        <div class="clearfix visible-md-block visible-lg-block"></div>
+                    {% endif %}
+                    {% if forloop.counter|divisibleby:2 %}
+                        <div class="clearfix visible-sm-block"></div>
+                    {% endif %}
+                {% empty %}
+                    <div class="col-12">
+                        <p class="text-center">Aún no hay dudas registradas.</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>

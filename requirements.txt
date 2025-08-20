@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 asgiref==3.8.1
 cffi==1.17.1
 cryptography==45.0.5
@@ -13,3 +14,18 @@ python-slugify==8.0.4
 sqlparse==0.5.3
 text-unidecode==1.3
 tzdata==2025.2
+=======
+asgiref         ==3.9.1
+cffi            ==1.17.1
+cryptography    ==45.0.5
+Django         ==5.2.4
+django-ckeditor ==6.7.3
+django-js-asset ==3.1.2
+mysqlclient     ==2.2.7
+pillow          ==11.3.0
+pip            ==25.1.1
+pycparser       ==2.22
+PyMySQL        ==1.1.1
+sqlparse       ==0.5.3
+tzdata         ==2025.2
+>>>>>>> 4e34bea875b00b5340c62c09859dcfa764f43d51

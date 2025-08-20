@@ -5,7 +5,7 @@ from django.db import models
 class Alumnos(models.Model):
     ident = models.CharField(max_length=12, verbose_name="Identificacion")
     nombre = models.TextField(verbose_name="Nombre")
-    tarea = models.ForeignKey('Tareas', on_delete=models.CASCADE, verbose_name="Tarea", null=True, blank=True)  # Agregué null=True, blank=True
+    
     foto = models.ImageField(upload_to='alumnos/', verbose_name="Foto", null=True, blank=True)  # Agregué el campo foto
     created = models.DateTimeField(auto_now_add=True, verbose_name="Creado") 
     updated = models.DateTimeField(auto_now=True, verbose_name="Actualizado")  # Cambié auto_now_add por auto_now
