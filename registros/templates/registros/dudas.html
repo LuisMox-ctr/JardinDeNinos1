@@ -1,60 +1,432 @@
-<!--Diego Daniel Yañez Zaacarias-->
 {% extends "inicio/encabezado.html" %}
 
 {% block contenido %}
+<style>
+    /* Variables CSS para mejor mantenimiento */
+    :root {
+        --primary-color: #cf1616;
+        --secondary-color: #40c219;
+        --success-color: #73d433;
+        --success-hover: #1bdb1b;
+        --warning-color: #ffd700;
+        --background-light: rgba(216, 221, 216, 1);
+        --card-bg: #fcfcfc;
+        --card-header-bg: #ece2e4;
+        --text-primary: #cf1616;
+        --text-muted: #141418;
+        --border-light: #e6e9e6;
+        --focus-color: #ff6347;
+        --divider-color: #dd6119;
+        
+        /* Espaciado consistente */
+        --spacing-xs: 0.5rem;
+        --spacing-sm: 1rem;
+        --spacing-md: 1.5rem;
+        --spacing-lg: 2rem;
+        --spacing-xl: 3rem;
+        
+        /* Border radius */
+        --radius-sm: 5px;
+        --radius-md: 15px;
+        --radius-lg: 25px;
+        --radius-xl: 30px;
+        
+        /* Sombras */
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+        --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+        --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.2);
+        
+        /* Transiciones */
+        --transition-fast: 0.2s ease;
+        --transition-normal: 0.3s ease;
+    }
+
+    /* Contenedor principal mejorado */
+    .container-custom {
+        background: linear-gradient(135deg, var(--background-light) 0%, rgba(230, 235, 230, 0.9) 100%);
+        border-radius: var(--radius-xl);
+        padding: var(--spacing-xl);
+        box-shadow: var(--shadow-md);
+        backdrop-filter: blur(10px);
+    }
+
+    /* Tipografía mejorada */
+    .main-title {
+        color: var(--primary-color);
+        font-family: 'Fredoka', sans-serif;
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+        text-shadow: 0 2px 4px rgba(207, 22, 22, 0.1);
+    }
+
+    .section-title {
+        color: var(--primary-color);
+        font-family: 'Fredoka', sans-serif;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    /* Formulario mejorado */
+    .form-container {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .form-label {
+        color: var(--text-primary);
+        font-weight: 600;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .form-control {
+        border-radius: var(--radius-md);
+        border: 2px solid var(--border-light);
+        transition: all var(--transition-normal);
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: var(--focus-color);
+        box-shadow: 0 0 0 0.25rem rgba(255, 99, 71, 0.25);
+        transform: translateY(-1px);
+    }
+
+    .form-control:hover {
+        border-color: var(--secondary-color);
+    }
+
+    /* Botón mejorado */
+    .btn-submit {
+        background: linear-gradient(135deg, var(--success-color) 0%, var(--secondary-color) 100%);
+        border: none;
+        border-radius: var(--radius-lg);
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 0.875rem 2rem;
+        transition: all var(--transition-normal);
+        box-shadow: var(--shadow-sm);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-submit:hover {
+        background: linear-gradient(135deg, var(--success-hover) 0%, var(--success-color) 100%);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+    }
+
+    .btn-submit:active {
+        transform: translateY(0);
+    }
+
+    /* Divisor mejorado */
+    .custom-divider {
+        border: none;
+        height: 3px;
+        background: linear-gradient(90deg, transparent 0%, var(--divider-color) 50%, transparent 100%);
+        margin: var(--spacing-xl) 0;
+        border-radius: 2px;
+    }
+
+    /* Cards mejoradas */
+    .dudas-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: var(--spacing-xl);
+        margin-top: var(--spacing-lg);
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .duda-card {
+        background: var(--card-bg);
+        border: 2px solid var(--secondary-color);
+        border-radius: var(--radius-md);
+        transition: all var(--transition-normal);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 350px;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .duda-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--success-color);
+    }
+
+    .card-header-custom {
+        background: linear-gradient(135deg, var(--card-header-bg) 0%, rgba(236, 226, 228, 0.8) 100%);
+        border-bottom: 2px solid var(--secondary-color);
+        padding: var(--spacing-md);
+    }
+
+    .card-title {
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .card-date {
+        color: var(--text-muted);
+        font-size: 1rem;
+        font-style: italic;
+        margin-top: var(--spacing-xs);
+    }
+
+    .card-body-custom {
+        padding: var(--spacing-lg);
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .card-description {
+        color: #333;
+        line-height: 1.6;
+        margin-bottom: auto;
+        font-size: 1.1rem;
+    }
+
+    .card-description strong {
+        font-size: 1.15rem;
+        color: var(--text-primary);
+        display: block;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .card-description p {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+
+    /* Respuestas y badges mejorados */
+    .response-success {
+        background: linear-gradient(135deg, rgba(115, 212, 51, 0.1) 0%, rgba(64, 194, 25, 0.1) 100%);
+        border: 1px solid var(--success-color);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-lg);
+        margin-top: var(--spacing-md);
+    }
+
+    .response-title {
+        color: var(--success-color);
+        font-weight: 600;
+        font-size: 1.15rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .response-success p {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+
+    .badge-pending {
+        background: linear-gradient(135deg, var(--warning-color) 0%, #ffed4e 100%);
+        color: #333;
+        font-weight: 600;
+        padding: var(--spacing-sm) var(--spacing-lg);
+        border-radius: var(--radius-md);
+        font-size: 1rem;
+        display: inline-block;
+        margin-top: var(--spacing-md);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .empty-state {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 1.25rem;
+        padding: var(--spacing-xl);
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: var(--radius-md);
+        border: 2px dashed var(--border-light);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .duda-card {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .duda-card:nth-child(n) {
+        animation-delay: calc(0.1s * var(--animation-order, 0));
+    }
+
+    /* Mejoras en responsividad */
+    @media (max-width: 768px) {
+        .container-custom {
+            padding: var(--spacing-lg);
+            margin: var(--spacing-sm);
+        }
+        
+        .dudas-grid {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            max-width: 500px;
+        }
+        
+        .form-container {
+            padding: var(--spacing-md);
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+        }
+
+        .card-description {
+            font-size: 1rem;
+        }
+
+        .card-description strong {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container-custom {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+        }
+        
+        .btn-submit {
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+        }
+    }
+
+    /* Estados de carga y interactividad */
+    .form-container:has(.form-control:focus) {
+        box-shadow: 0 0 20px rgba(64, 194, 25, 0.1);
+    }
+
+    /* Accesibilidad mejorada */
+    .btn-submit:focus-visible {
+        outline: 3px solid var(--focus-color);
+        outline-offset: 2px;
+    }
+
+    .form-control:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 2px;
+    }
+
+    /* Mejoras para impresión */
+    @media print {
+        .container-custom {
+            background: white;
+            box-shadow: none;
+        }
+        
+        .duda-card:hover {
+            transform: none;
+            box-shadow: var(--shadow-sm);
+        }
+    }
+</style>
+
 <div class="container my-5">
     <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <h1 class="text-center text-primary mb-4">Dudas</h1>
-            
-            <!-- Formulario -->
-            <div class="card p-4 mb-4">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-success">Enviar</button>
-                </form>
-            </div>
-
-            <hr class="my-5">
-
-            <!-- Listado con Grid -->
-            <h2 class="text-center text-secondary mb-4">Dudas Enviadas</h2>
-            
-            <div class="row">
-                {% for duda in dudas %}
-                    <div class="col-sm-6 col-md-4 mb-3">
-                        <div class="card" style="border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                            <div class="card-header">
-                                <strong>{{ duda.asunto }}</strong>
-                                <br><small class="text-muted">{{ duda.created|date:"d/m/Y H:i" }}</small>
-                            </div>
-                            <div class="card-body">
-                                <p><strong>Descripción:</strong> {{ duda.descripcion }}</p>
-                                
-                                {% if duda.respuesta %}
-                                    <div class="alert alert-success">
-                                        <strong>Respuesta:</strong> {{ duda.respuesta }}
+        <div class="col-lg-10">
+            <div class="container-custom">
+                <h1 class="main-title">¿Tienes alguna duda?</h1>
+                
+                <!-- Formulario -->
+                <div class="form-container">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">
+                                    {{ field.label }}
+                                    {% if field.field.required %}
+                                        <span class="text-danger" aria-label="Campo requerido">*</span>
+                                    {% endif %}
+                                </label>
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {% for error in field.errors %}
+                                            <small class="text-danger">{{ error }}</small>
+                                        {% endfor %}
                                     </div>
-                                {% else %}
-                                    <span class="badge bg-warning text-dark">En espera de respuesta</span>
                                 {% endif %}
                             </div>
-                        </div>
-                    </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-submit w-100">
+                            <span>Enviar Duda</span>
+                        </button>
+                    </form>
+                </div>
 
-                    <!-- Clearfix para Bootstrap 3 -->
-                    {% if forloop.counter|divisibleby:3 %}
-                        <div class="clearfix visible-md-block visible-lg-block"></div>
+                <hr class="custom-divider">
+
+                <!-- Listado de Dudas -->
+                <section class="dudas-enviadas-section" aria-labelledby="dudas-title">
+                    <h2 id="dudas-title" class="section-title">Dudas Enviadas</h2>
+                    
+                    {% if dudas %}
+                        <div class="dudas-grid">
+                            {% for duda in dudas %}
+                                <article class="duda-card" style="--animation-order: {{ forloop.counter0 }}">
+                                    <header class="card-header-custom">
+                                        <h3 class="card-title">{{ duda.asunto }}</h3>
+                                        <time class="card-date" datetime="{{ duda.created|date:'c' }}">
+                                            {{ duda.created|date:"d/m/Y H:i" }}
+                                        </time>
+                                    </header>
+                                    <div class="card-body-custom">
+                                        <div class="card-description">
+                                            <strong>Descripción:</strong>
+                                            <p>{{ duda.descripcion }}</p>
+                                        </div>
+                                        
+                                        {% if duda.respuesta %}
+                                            <div class="response-success">
+                                                <div class="response-title">Respuesta:</div>
+                                                <p>{{ duda.respuesta }}</p>
+                                            </div>
+                                        {% else %}
+                                            <span class="badge-pending" role="status" aria-label="Estado: Pendiente de respuesta">
+                                                Pendiente de respuesta
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <p>¡Genial! No tienes dudas pendientes.</p>
+                        </div>
                     {% endif %}
-                    {% if forloop.counter|divisibleby:2 %}
-                        <div class="clearfix visible-sm-block"></div>
-                    {% endif %}
-                {% empty %}
-                    <div class="col-12">
-                        <p class="text-center">Aún no hay dudas registradas.</p>
-                    </div>
-                {% endfor %}
+                </section>
             </div>
         </div>
     </div>
