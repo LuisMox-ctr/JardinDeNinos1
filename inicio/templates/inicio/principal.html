@@ -4,23 +4,483 @@
 {% load static %}
 
 {% block contenido %}
-<div class="page-content text-center">
-    <h1>Bienvenidos padres de familia les damos la bienvenida</h1>
-    <div class="container">
-  <div class="row text-center">
-    <div class="col-xs-6 col-sm-6 col-md-6">
-      <img src="{% static 'imagenes/Dudas.jpg' %}" alt="Logo del Sitio" class="logo" width="300" height="300">
-      <a href="{% url 'dudas' %}" class="btn btn-primary btn-block">Dudas</a>
+<div class="page-content">
+    <!-- Sección de bienvenida -->
+    <div class="welcome-section">
+        <div class="container-fluid">
+            <div class="welcome-content">
+                <h1 class="welcome-title">
+                    ¡Bienvenidos Padres de Familia! 
+                    <span class="wave-emoji">👋</span>
+                </h1>
+                <p class="welcome-subtitle">
+                    Les damos la más cordial bienvenida a nuestro plataforma de jardín de niños
+                </p>
+                
+            </div>
+        </div>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6">
-      <img src="{% static 'imagenes/tareas.png' %}" alt="Logo del Sitio" class="logo" width="300" height="300">
-      <a href="{% url 'tareas' %}" class="btn btn-success btn-block">Tareas</a>
+
+    <!-- Sección de navegación principal -->
+    <div class="main-navigation">
+        <div class="container">
+            <h2 class="section-title">¿Qué deseas hacer hoy?</h2>
+            
+            <div class="row justify-content-center">
+                <!-- Tarjeta de Dudas -->
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="nav-card dudas-card">
+                        <div class="card-image-container">
+                            <img src="{% static 'imagenes/Dudas.jpg' %}" alt="Dudas" class="card-image">
+                            <div class="card-overlay">
+                                <i class="fas fa-question-circle card-icon"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Dudas</h3>
+                            <p class="card-description">
+                                ¿Tienes preguntas? Estamos aquí para ayudarte con cualquier duda que tengas
+                            </p>
+                            <a href="{% url 'dudas' %}" class="btn-modern btn-dudas">
+                                <span>Resolver Dudas</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Tareas -->
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="nav-card tareas-card">
+                        <div class="card-image-container">
+                            <img src="{% static 'imagenes/tareas.png' %}" alt="Tareas" class="card-image">
+                            <div class="card-overlay">
+                                <i class="fas fa-clipboard-list card-icon"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Tareas</h3>
+                            <p class="card-description">
+                                Revisa las actividades y tareas asignadas para tu pequeño
+                            </p>
+                            <a href="{% url 'tareas' %}" class="btn-modern btn-tareas">
+                                <span>Ver Tareas</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Reconocimientos -->
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                    <div class="nav-card reconocimientos-card">
+                        <div class="card-image-container">
+                            <img src="{% static 'imagenes/reconocimientos.jpg' %}" alt="Reconocimientos" class="card-image">
+                            <div class="card-overlay">
+                                <i class="fas fa-trophy card-icon"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Reconocimientos</h3>
+                            <p class="card-description">
+                                Celebra los logros y reconocimientos de tu hijo
+                            </p>
+                            <a href="{% url 'reconocimientos' %}" class="btn-modern btn-reconocimientos">
+                                <span>Ver Logros</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-xs-6 col-sm-6 col-md-6">
-      <img src="{% static 'imagenes/reconocimientos.jpg' %}" alt="Logo del Sitio" class="logo" width="350" height="250">
-      <a href="{% url 'reconocimientos' %}" class="btn btn-warning btn-block">Reconocimientos</a>
+
+    <!-- Sección de información adicional -->
+    <div class="info-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="info-card">
+                        <i class="fas fa-clock info-icon"></i>
+                        <h4>Horarios</h4>
+                        <p>Lunes a Viernes<br>8:00 AM - 2:00 PM</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="info-card">
+                        <i class="fas fa-phone info-icon"></i>
+                        <h4>Contacto</h4>
+                        <p>¿Necesitas ayuda?<br>4455454545</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="info-card">
+                        <i class="fas fa-heart info-icon"></i>
+                        <h4>Cuidado</h4>
+                        <p>El mejor cuidado<br>para tu pequeño</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
+<style>
+    /* Variables CSS para colores */
+    :root {
+        --color-dudas: #FF6B6B;
+        --color-tareas: #4ECDC4;
+        --color-reconocimientos: #FFE66D;
+        --color-principal: #4CAF50;
+        --color-texto: #2C3E50;
+        --color-texto-claro: #7F8C8D;
+        --sombra-suave: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --sombra-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .page-content {
+        padding: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        margin-left: 0; /* Ajuste para que no se superponga con el sidebar */
+    }
+
+    /* Sección de bienvenida */
+    .welcome-section {
+        background: linear-gradient(135deg, #a2514bff 0%, #a2514bff 100%);
+        color: white;
+        padding: 4rem 2rem 4rem 1rem; /* Más padding a la izquierda para separar del sidebar */
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .welcome-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="0%" r="50%"><stop offset="0%" stop-color="white" stop-opacity="0.1"/><stop offset="100%" stop-color="white" stop-opacity="0"/></radialGradient></defs><rect width="100" height="20" fill="url(%23a)"/></svg>');
+        opacity: 0.3;
+    }
+
+    .welcome-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .welcome-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .wave-emoji {
+        display: inline-block;
+        animation: wave 2s infinite;
+    }
+
+    @keyframes wave {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(20deg); }
+        75% { transform: rotate(-20deg); }
+    }
+
+    .welcome-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .welcome-decoration {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        font-size: 2rem;
+        animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .star, .heart {
+        animation: pulse 2s infinite;
+    }
+
+    .heart {
+        animation-delay: 0.5s;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    /* Sección de navegación principal */
+    .main-navigation {
+        background: #f8f9fa;
+        padding: 4rem 2rem 4rem 1rem; /* Ajuste de padding para mover hacia la izquierda */
+        position: relative;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: var(--color-texto);
+        margin-bottom: 3rem;
+        font-weight: 700;
+    }
+
+    /* Tarjetas de navegación */
+    .nav-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--sombra-suave);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        height: 100%;
+        position: relative;
+        transform: translateY(0);
+    }
+
+    .nav-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--sombra-hover);
+    }
+
+    .card-image-container {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .nav-card:hover .card-image {
+        transform: scale(1.1);
+    }
+
+    .card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav-card:hover .card-overlay {
+        opacity: 1;
+    }
+
+    .card-icon {
+        font-size: 3rem;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .card-content {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .card-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--color-texto);
+    }
+
+    .card-description {
+        color: var(--color-texto-claro);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    /* Botones modernos */
+    .btn-modern {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.5s;
+    }
+
+    .btn-modern:hover::before {
+        left: 100%;
+    }
+
+    .btn-modern:hover {
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    .btn-dudas {
+        background: linear-gradient(45deg, var(--color-dudas), #FF8E8E);
+        color: white;
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    .btn-dudas:hover {
+        color: white;
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    }
+
+    .btn-tareas {
+        background: linear-gradient(45deg, var(--color-tareas), #6FDDD6);
+        color: white;
+        box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+    }
+
+    .btn-tareas:hover {
+        color: white;
+        box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+    }
+
+    .btn-reconocimientos {
+        background: linear-gradient(45deg, var(--color-reconocimientos), #FFED85);
+        color: #333;
+        box-shadow: 0 5px 15px rgba(255, 230, 109, 0.3);
+    }
+
+    .btn-reconocimientos:hover {
+        color: #333;
+        box-shadow: 0 8px 25px rgba(255, 230, 109, 0.4);
+    }
+
+    /* Sección de información */
+    .info-section {
+        background: white;
+        padding: 3rem 2rem 3rem 1rem; /* Ajuste de padding para alinear con el resto */
+    }
+
+    .info-card {
+        text-align: center;
+        padding: 2rem;
+        border-radius: 15px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .info-icon {
+        font-size: 2.5rem;
+        color: var(--color-principal);
+        margin-bottom: 1rem;
+    }
+
+    .info-card h4 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-texto);
+        margin-bottom: 1rem;
+    }
+
+    .info-card p {
+        color: var(--color-texto-claro);
+        line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .welcome-title {
+            font-size: 2rem;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .btn-modern {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+        }
+
+        
+
+    @media (max-width: 576px) {
+        .welcome-section {
+            padding: 2rem 1rem; /* Padding balanceado en móviles pequeños */
+        }
+
+        .main-navigation {
+            padding: 2rem 1rem;
+        }
+
+        .info-section {
+            padding: 2rem 1rem;
+        }
+
+        .card-image-container {
+            height: 200px;
+        }
+
+        .welcome-title {
+            font-size: 1.8rem;
+        }
+    }
+</style>
 
 {% endblock %}
