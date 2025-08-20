@@ -2,7 +2,7 @@
 
 {% block contenido %}
 <style>
-    /* Variables CSS para mejor mantenimiento */
+    
     :root {
         --primary-color: #cf1616;
         --secondary-color: #40c219;
@@ -41,7 +41,7 @@
         --transition-normal: 0.3s ease;
     }
 
-    /* Contenedor principal mejorado */
+    
     .container-custom {
         background: linear-gradient(135deg, var(--background-light) 0%, rgba(230, 235, 230, 0.9) 100%);
         border-radius: var(--radius-xl);
@@ -50,7 +50,7 @@
         backdrop-filter: blur(10px);
     }
 
-    /* Tipografía mejorada */
+    
     .main-title {
         color: var(--primary-color);
         font-family: 'Fredoka', sans-serif;
@@ -70,7 +70,7 @@
         margin-bottom: var(--spacing-lg);
     }
 
-    /* Formulario mejorado */
+   
     .form-container {
         background: rgba(255, 255, 255, 0.8);
         border-radius: var(--radius-md);
@@ -103,7 +103,7 @@
         border-color: var(--secondary-color);
     }
 
-    /* Botón mejorado */
+    
     .btn-submit {
         background: linear-gradient(135deg, var(--success-color) 0%, var(--secondary-color) 100%);
         border: none;
@@ -127,7 +127,7 @@
         transform: translateY(0);
     }
 
-    /* Divisor mejorado */
+    /
     .custom-divider {
         border: none;
         height: 3px;
@@ -136,7 +136,7 @@
         border-radius: 2px;
     }
 
-    /* Cards mejoradas */
+    
     .dudas-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -213,7 +213,7 @@
         line-height: 1.6;
     }
 
-    /* Respuestas y badges mejorados */
+    
     .response-success {
         background: linear-gradient(135deg, rgba(115, 212, 51, 0.1) 0%, rgba(64, 194, 25, 0.1) 100%);
         border: 1px solid var(--success-color);
@@ -259,7 +259,7 @@
         margin: 0 auto;
     }
 
-    /* Animaciones */
+   
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -279,7 +279,7 @@
         animation-delay: calc(0.1s * var(--animation-order, 0));
     }
 
-    /* Mejoras en responsividad */
+    
     @media (max-width: 768px) {
         .container-custom {
             padding: var(--spacing-lg);
@@ -321,12 +321,12 @@
         }
     }
 
-    /* Estados de carga y interactividad */
+    
     .form-container:has(.form-control:focus) {
         box-shadow: 0 0 20px rgba(64, 194, 25, 0.1);
     }
 
-    /* Accesibilidad mejorada */
+    
     .btn-submit:focus-visible {
         outline: 3px solid var(--focus-color);
         outline-offset: 2px;
@@ -337,7 +337,7 @@
         outline-offset: 2px;
     }
 
-    /* Mejoras para impresión */
+   
     @media print {
         .container-custom {
             background: white;
